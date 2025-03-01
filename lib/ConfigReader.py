@@ -3,8 +3,9 @@ from pyspark import SparkConf
 
 #loading the application configs in python dictionary
 def get_app_config(env):
+    config_path = "configs/application.conf"
     config = configparser.ConfigParser()
-    config.read("configs/application.conf")
+    config.read(config_path)
     app_conf={}
     for (key,val) in config.items(env):
         app_conf[key]=val
@@ -12,8 +13,9 @@ def get_app_config(env):
     
 #loading the pyspark configs and creating aspark conf object
 def get_pyspark_config(env):
+    config_path = "configs/pyspark.conf"
     config = configparser.ConfigParser()
-    config.read("configs/pyspark.conf")
+    config.read(config_path)
     pyspark_conf=SparkConf()
     for (key,val) in config.items(env):
         pyspark_conf.set(key,val)
